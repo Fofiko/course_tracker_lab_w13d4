@@ -80,7 +80,7 @@ public class Customer {
         this.bookings = bookings;
     }
 
-    public void addBookings(Booking booking) {
+    public void addBooking(Booking booking) {
         this.bookings.add(booking);
     }
 }
