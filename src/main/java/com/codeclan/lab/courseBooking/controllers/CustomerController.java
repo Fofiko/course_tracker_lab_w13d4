@@ -17,14 +17,21 @@ public class CustomerController {
     @Autowired
     CustomerRepository customerRepository;
 
-    @GetMapping(value = "/course/{courseId}")
+    @GetMapping(value = "course/{courseId}")
     public List<Customer> getCustomersForCourse(@PathVariable Long courseId) {
-        return customerRepository.getCustomersForCourse(courseId);
+//        return customerRepository.getCustomersForCourse(courseId);
+        return customerRepository.getCustomersOverAgeInTownForCourse(0, "", courseId);
     }
 
-    @GetMapping(value = "/town/{town}/course/{courseId}")
+    @GetMapping(value = "town/{town}/course/{courseId}")
     public List<Customer> getCustomersInTownForCourse(@PathVariable String town, @PathVariable Long courseId){
-        return customerRepository.getCustomersInTownForCourse(town, courseId);
+//        return customerRepository.getCustomersInTownForCourse(town, courseId);
+        return customerRepository.getCustomersOverAgeInTownForCourse(0, town, courseId);
+    }
+
+    @GetMapping(value = "age/{age}/town/{town}/course/{courseId}")
+    public List<Customer> getCustomersOverAgeInTownForCourse(@PathVariable int age, @PathVariable String town, @PathVariable Long courseId){
+        return customerRepository.getCustomersOverAgeInTownForCourse(age, town.toLowerCase(), courseId);
     }
 
 }
